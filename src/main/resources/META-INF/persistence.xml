@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+<!--         <class>com.jrsys.mtrust.entity.CardEntry</class> -->
+<!--         <class>com.jrsys.mtrust.entity.Client</class> -->
+<!--         <class>com.jrsys.mtrust.entity.Contact</class> -->
+<!--         <class>com.jrsys.mtrust.entity.User</class> -->
+<!--         <class>com.jrsys.mtrust.entity.FriendConfirm</class> -->
+<!--         <exclude-unlisted-classes>true</exclude-unlisted-classes> -->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!-- value="create" to build a new database on each run; value="update" to modify an existing database; value="create-drop" means the same as "create" but also drops tables when Hibernate closes; value="validate" makes no changes to the database -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+            <property name="hibernate.connection.charSet" value="UTF-8"/>
+            <property name="hibernate.show_sql" value="true"/>
+            
+            <!-- Uncomment the following two properties for JBoss only -->
+            <!-- property name="hibernate.validator.apply_to_ddl" value="false" /-->
+            <!-- property name="hibernate.validator.autoregister_listeners" value="false" /-->
+        </properties>
+    </persistence-unit>
+    
+    <persistence-unit name="mongodb-jpa" transaction-type="JTA">
+        <!-- Use Hibernate OGM provider: configuration will be transparent -->
+        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+<!--         <class>com.jrsys.mtrust.entity.mongodb.News</class> -->
+<!--         <class>com.jrsys.mtrust.entity.mongodb.NewsPaper</class> -->
+<!--         <class>com.jrsys.mtrust.entity.MongoDBContact</class> -->
+<!--         <class>com.jrsys.mtrust.entity.MongoDBUser</class> -->
+<!--         <class>com.jrsys.mtrust.entity.ContactCertiCard</class> -->
+<!--         <class>com.jrsys.mtrust.entity.OAuthGrant</class> -->
+<!--         <class>com.jrsys.mtrust.entity.OAuthScope</class> -->
+<!--         <class>com.jrsys.mtrust.entity.ServiceLog</class> -->
+<!--         <class>com.jrsys.mtrust.entity.CertiCard</class> -->
+<!--         <class>com.jrsys.mtrust.entity.mongodb.OtherSourceUser</class> -->
+<!--         <class>com.jrsys.mtrust.entity.mongodb.OtherSourceFriend</class> -->
+        
+<!--         <class>com.jrsys.mtrust.entity.contact.parameter.AddressType</class> -->
+<!--         <class>com.jrsys.mtrust.entity.contact.parameter.EmailType</class> -->
+<!--         <class>com.jrsys.mtrust.entity.contact.parameter.TelephoneType</class> -->
+<!--         <class>com.jrsys.mtrust.entity.contact.parameter.PublishType</class> -->
+        
+<!--         <exclude-unlisted-classes>true</exclude-unlisted-classes> -->
+        <properties>
+            <!-- property is optional if you want to use Infinispan, otherwise adjust to your favorite
+                NoSQL Datastore provider.-->
+            <property name="hibernate.ogm.datastore.provider" value="mongodb"/>
+            <property name="hibernate.ogm.datastore.host" value="localhost"/>
+            <property name="hibernate.ogm.datastore.database" value="trustinm-thor"/>
+            <property name="hibernate.ogm.datastore.create_database" value="true"/>
+            
+            <!-- defines which JTA Transaction we plan to use -->
+            <property name="hibernate.transaction.jta.platform"
+                      value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
+        </properties>
+    </persistence-unit>
+</persistence>

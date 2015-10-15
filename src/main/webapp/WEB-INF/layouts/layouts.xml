@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+  <definition name="default" template="/WEB-INF/layouts/default.jspx">
+    <put-attribute name="header" value="/WEB-INF/views/header.jspx" />
+    <put-attribute name="menu" value="/WEB-INF/views/menu.jspx" />
+    <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
+  </definition>
+
+  <definition name="public" template="/WEB-INF/layouts/default.jspx">
+    <put-attribute name="header" value="/WEB-INF/views/header.jspx" />
+    <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
+  </definition>
+
+  <definition name="loginDefault" template="/WEB-INF/layouts/login_default.jsp">
+  </definition>
+  
+  <definition name="adminlte"      template="/WEB-INF/layouts/adminLTELayout/adminLTELayout.jsp">
+		<put-attribute name="header"  value="/WEB-INF/layouts/adminLTELayout/header.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/layouts/adminLTELayout/sidebar.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/layouts/adminLTELayout/footer.jsp" />
+	</definition>
+	<definition name="selfAside"   template="/WEB-INF/layouts/selfAsideLayout/adminLTELayout.jsp">
+	    <put-attribute name="header"  value="/WEB-INF/layouts/selfAsideLayout/header.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/layouts/selfAsideLayout/sidebarLayout.jsp" />
+	    <put-attribute name="footer"  value="/WEB-INF/layouts/selfAsideLayout/footer.jsp" />
+	</definition>
+
+</tiles-definitions>
