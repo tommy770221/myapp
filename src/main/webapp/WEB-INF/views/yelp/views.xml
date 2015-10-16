@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    
+	<definition name="yelpForm" extends="adminlte">
+		<put-attribute name="body" value="/WEB-INF/views/yelp/yelpForm.jsp" />
+	</definition>
+	<definition name="listYelp" extends="adminlte">
+		<put-attribute name="body" value="/WEB-INF/views/yelp/listSuccess.jsp" />
+	</definition>
+    
+
+</tiles-definitions>

@@ -37,19 +37,19 @@
       <li class="treeview">
         <a href="#"><span>Yelp功能</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="${pageContext.request.contextPath}/yelpForm.action">Yelp查詢評價</a></li>
+          <li><a href="${pageContext.request.contextPath}/yelpForm">Yelp查詢評價</a></li>
         </ul>
       </li>
        <li class="treeview">
         <a href="#"><span>youtube功能</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="${pageContext.request.contextPath}/youtubeQueryForm.action">查詢youtube</a></li>
+          <li><a href="${pageContext.request.contextPath}/youtubeQueryForm">查詢youtube</a></li>
         </ul>
       </li>
       <li class="treeview">
         <a href="#"><span>商品功能</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="${pageContext.request.contextPath}/listItem.action">查詢商品</a></li>
+          <li><a href="${pageContext.request.contextPath}/listItem">查詢商品</a></li>
         </ul>
       </li>
     </ul><!-- /.sidebar-menu -->
