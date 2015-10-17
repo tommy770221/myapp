@@ -2,6 +2,7 @@ package com.tommy.myapp.controller;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.google.api.client.util.DateTime;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.HttpTransport;
@@ -61,7 +63,7 @@ public class YoutubeController {
 			@RequestParam(value = "publishBefore", required = false) String publishBefore,
 			@RequestParam(value = "publishAfter", required = false) String publishAfter,
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse, Model model) {
+			HttpServletResponse httpServletResponse, Model model) throws ParseException {
 		System.out.println("youtube query call");
 		ObjectMapper mapper = new ObjectMapper();
 		  if(! ("".equals(publishBefore)||publishBefore==null))
