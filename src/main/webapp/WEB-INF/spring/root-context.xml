@@ -64,17 +64,29 @@
 		<property name="numTestsPerEvictionRun" value="3" />
 		<property name="minEvictableIdleTimeMillis" value="1800000" />
 	</bean>
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="transactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<tx:annotation-driven mode="aspectj"
-		transaction-manager="transactionManager" />
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="entityManagerFactoryBean" />
+   </bean>
+	<tx:annotation-driven/>
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="persistenceUnit" />
-		<property name="dataSource" ref="dataSource" />
+		id="entityManagerFactoryBean">
+		  <property name="dataSource" ref="dataSource" />
+		  <property name="packagesToScan" value="com.tommy.model" />
+	      <!-- JpaVendorAdapter implementation for Hibernate EntityManager.
+	           Exposes Hibernate's persistence provider and EntityManager extension interface -->
+	      <property name="jpaVendorAdapter">
+	         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	      </property>
+	      <property name="jpaProperties">
+	         <props>
+	            <prop key="hibernate.hbm2ddl.auto">update</prop>
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	            <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+	         </props>
+	      </property>
 	</bean>
 
 	<bean id="dataSourceProxy"
@@ -97,5 +109,11 @@
 		</property>
 	</bean>
 	
+	<bean id="mailService" class="com.tommy.service.impl.MailServiceImpl">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+	
+
+    <import resource="applicationContext-user.xml"/>	
     <import resource="application-security.xml"/>
 </beans>

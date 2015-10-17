@@ -16,7 +16,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
   </definition>
 
-  <definition name="loginDefault" template="/WEB-INF/layouts/login_default.jsp">
+  <definition name="singlePageDefault" template="/WEB-INF/layouts/login_default.jsp">
   </definition>
   
   <definition name="adminlte"      template="/WEB-INF/layouts/adminLTELayout/adminLTELayout.jsp">
