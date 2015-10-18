@@ -42,13 +42,13 @@
              <c:out value=" ${error_message} "></c:out>
          </div>
 
-        <form action="${pageContext.request.contextPath}/login" method="post">
+        <form action="${pageContext.request.contextPath}/loginApp" method="post">
           <div class="form-group has-feedback">
-            <input type="email" name="user.email"class="form-control" placeholder="Email" />
+            <input type="email" name="email"class="form-control" placeholder="Email" />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password"name="user.password" class="form-control" placeholder="Password" />
+            <input type="password"name="password" class="form-control" placeholder="Password" />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -72,7 +72,7 @@
         </div><!-- /.social-auth-links -->
 
         <a href="#">I forgot my password</a><br>
-        <a href="<%=request.getContextPath()%>/register.jsp" class="text-center">Register a new membership</a>
+        <a href="<%=request.getContextPath()%>/regist" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

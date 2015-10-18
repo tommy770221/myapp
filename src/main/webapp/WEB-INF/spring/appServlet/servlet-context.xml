@@ -58,7 +58,7 @@
     </context:component-scan>
     
 	<!-- Selects a static view for rendering without the need for an explicit controller -->
-    <mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/" view-name="login"/>
     <mvc:view-controller path="/oauthlogin"/> 
     <mvc:view-controller path="/uncaughtException"/>
     <mvc:view-controller path="/resourceNotFound"/>

@@ -35,7 +35,7 @@ public class User {
 	private Integer post_no;
 	@Column(name = "age")
 	private Integer age;
-	@Column(name = "enabled", columnDefinition = "tinyint default false")
+	@Column(name = "enabled")
 	private Boolean enabled;
 	@Column(name = "birthday")
 	private Date birthday;
@@ -213,8 +213,8 @@ public class User {
 	}
 	@PrePersist
 	void preInsert() {
-		createDate = new Date();
-		enabled=false;
+		this.createDate = new Date();
+		this.enabled=false;
 	}
 
 	@PreUpdate

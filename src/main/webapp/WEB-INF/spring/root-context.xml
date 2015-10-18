@@ -112,8 +112,10 @@
 	<bean id="mailService" class="com.tommy.service.impl.MailServiceImpl">
 		<property name="mailSender" ref="mailSender" />
 	</bean>
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
+    </bean>
 	
 
-    <import resource="applicationContext-user.xml"/>	
+    <import resource="applicationContext-dao.xml"/>	
     <import resource="application-security.xml"/>
 </beans>

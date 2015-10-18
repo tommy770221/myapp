@@ -20,4 +20,12 @@ public class LoginController {
 		
 		return "login";
 	}
+	
+	@RequestMapping(value = "/manu", method = RequestMethod.GET, produces = "text/html; charset=utf-8")
+	public String manu(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse, Model model) {
+		
+		return "page/manu";
+	}
 }
