@@ -8,6 +8,61 @@
 	                             http://www.springframework.org/schema/security/spring-security.xsd">
 
     <debug></debug>
+        <!-- HTTP security configurations -->
+    <!-- token 驗證 -->
+	<http pattern="/oauth/token" create-session="stateless"
+		authentication-manager-ref="clientAuthenticationManager"
+		use-expressions="true" entry-point-ref="clientAuthenticationEntryPoint">
+
+		<anonymous enabled="false" />
+		<intercept-url pattern="/oauth/token" access="hasRole('ROLE_CLIENT')" />
+
+		<custom-filter ref="clientCredentialsTokenEndpointFilter"
+			after="BASIC_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+		<expression-handler ref="oauthWebExpressionHandler" />
+	</http>
+
+	<!-- 讓/oauth/authorize一定要先讓使用者認證過 -->
+	<http pattern="/oauth/authorize" use-expressions="true" auto-config="true">
+		<form-login login-processing-url="/loginApp"
+			login-page="/login" authentication-failure-url="/login?login_error=t" />
+		<logout logout-url="/oauthlogout" />
+		<intercept-url pattern="/oauth/authorize" access="hasRole('ROLE_USER')" />
+	</http> 
+
+	<!-- OAuth認證的EndpointFilter 它的認證來源是clientAuthenticationManager -->
+	<beans:bean id="clientCredentialsTokenEndpointFilter"   	
+		class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">	
+		<beans:property name="authenticationManager" ref="clientAuthenticationManager" />
+	</beans:bean>
+     
+    <http pattern="/v1.0/**" create-session="never"
+		authentication-manager-ref="clientAuthenticationManager"
+		use-expressions="true" entry-point-ref="clientAuthenticationEntryPoint">
+	
+		<anonymous enabled="false" />
+		<intercept-url pattern="/v1.0/**"
+			access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER'))" />
+	
+		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+		<expression-handler ref="oauthWebExpressionHandler" />
+	</http>
+	
+	<http pattern="/rest/**" create-session="never"
+		authentication-manager-ref="clientAuthenticationManager"
+		use-expressions="true" entry-point-ref="clientAuthenticationEntryPoint">
+	
+		<anonymous enabled="false" />
+		<intercept-url pattern="/rest/**"
+			access="#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER'))" />
+	
+		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+		<expression-handler ref="oauthWebExpressionHandler" />
+	</http>
+    
 	<http use-expressions="true" auto-config='true' disable-url-rewriting="false">
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/register**" access="hasRole('ROLE_USER')"/>
