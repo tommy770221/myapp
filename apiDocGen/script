@@ -1,0 +1,2 @@
+cd I:\workspacePlatForm\AllPlatform\apiDocGen
+apidoc -i ../src/main/java/com/tommy/myapp/restcontroller -o ../src/main/webapp/apiDocs -t template/

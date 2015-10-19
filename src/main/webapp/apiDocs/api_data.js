@@ -1,0 +1,39 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "/user/me/?access_token=:accessToken",
+    "title": "Request My information",
+    "name": "GetMe",
+    "group": "MyProfile",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>accessToken</p> ",
+            "optional": false,
+            "field": "accessToken",
+            "description": "<p>OAuth Access Token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.1",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": \"4028818350787517015078759a220000\",\n  \"username\": \"tommy770221\",\n  \"email\": \"tommy770221test@gmail.com\",\n  \"createDate\": 1445129984000,\n  \"updateDate\": 1445129997000\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../src/main/java/com/tommy/myapp/restcontroller/UserRestController.java",
+    "groupTitle": "MyProfile",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:8080/myapp/v1.0/user/me/?access_token=:accessToken"
+      }
+    ]
+  }
+] });

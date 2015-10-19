@@ -1,0 +1,20 @@
+{
+  "name": "myapp-example",
+  "version": "0.0.1",
+  "description": "myapp apidoc example project",
+  "title": "Custom apiDoc browser title",
+  "url" : "http://localhost:8080/myapp",
+  "sampleUrl": "http://localhost:8080/myapp/v1.0",
+  "header": {
+    "title": "My own header title",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "My own footer title",
+    "filename": "footer.md"
+  },
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

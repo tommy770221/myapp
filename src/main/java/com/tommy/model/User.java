@@ -10,7 +10,12 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
+@JsonInclude(Include.NON_NULL)
 @Table(name = "user")
 public class User {
 
@@ -21,6 +26,7 @@ public class User {
 	private String id;
 	@Column(name = "USERNAME")
 	private String username;
+    @JsonIgnore
 	@Column(name = "PASSWORD")
 	private String password;
 	@Column(name = "email")
@@ -43,6 +49,8 @@ public class User {
 	private Date createDate;
 	@Column(name = "updateDate")
 	private Date updateDate;
+	
+	@JsonIgnore
 	@ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "userId"), }, inverseJoinColumns = { @JoinColumn(name = "roleId") })
 	private List<Role> roles;
