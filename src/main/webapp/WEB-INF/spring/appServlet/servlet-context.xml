@@ -92,6 +92,9 @@
       </beans:list>
     </beans:property>
   </beans:bean>
+  
+    
+    <beans:import resource="../applicationContext-webSocket.xml"/>
 
         <!-- Turns on support for mapping requests to Spring MVC @Controller methods
          Also registers default Formatters and Validators for use across all @Controllers -->
