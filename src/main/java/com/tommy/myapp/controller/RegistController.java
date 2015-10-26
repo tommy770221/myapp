@@ -62,7 +62,7 @@ public class RegistController {
 		ResourceBundle resb2 = ResourceBundle.getBundle("app", Locale.getDefault());
         System.out.println(resb2.getString("app.domain")); 
 		mailService.sendMail("tommy770221test@gmail.com", user.getEmail().trim(),
-				"恭喜加入會員", "<a href=\""+resb2.getString("app.domain")+"/regist/activeUser?activeCode="+user.getId()+"\">影點選此處啟用帳號</a>");
+				"恭喜加入會員", "<a href=\""+resb2.getString("app.domain")+"/regist/activeUser?activeCode="+user.getId()+"\">請點選此處啟用帳號</a>");
 		request.setAttribute("register_success","congratulation Please Active your account and login!");		
 		System.out.println("加入成功");
 		return "login";

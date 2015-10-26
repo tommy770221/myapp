@@ -7,5 +7,8 @@
   <definition name="websocket" extends="singlePageDefault">
     <put-attribute name="body" value="/WEB-INF/views/websocket/websocket.jsp" />
   </definition>
+   <definition name="chat" extends="singlePageDefault">
+    <put-attribute name="body" value="/WEB-INF/views/websocket/chat.jsp" />
+  </definition>
 
 </tiles-definitions>

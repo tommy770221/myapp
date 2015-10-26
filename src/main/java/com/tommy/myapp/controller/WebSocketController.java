@@ -29,7 +29,6 @@ public class WebSocketController {
 	  private TaskScheduler scheduler = new ConcurrentTaskScheduler();
 	  private List<Stock> stockPrices = new ArrayList<Stock>();
 	  private Random rand = new Random(System.currentTimeMillis());
-	    MessageHeaderAccessor accessor = new MessageHeaderAccessor();
 	   
 	  /**
 	   * Iterates stock list, update the price by randomly choosing a positive
@@ -79,7 +78,7 @@ public class WebSocketController {
 	  /**
 	   * Serve the main page, view will resolve to /WEB-INF/views/websocket.jsp
 	   */
-	  @RequestMapping(value = "/", method = RequestMethod.GET)
+	  @RequestMapping(value = "/websocket", method = RequestMethod.GET)
 	  public String home() {
 	    return "websocket";
 	  }
