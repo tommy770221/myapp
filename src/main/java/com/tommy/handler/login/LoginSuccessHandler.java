@@ -22,25 +22,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 
+
+
+import com.tommy.model.OnlineUser;
 import com.tommy.model.Role;
 import com.tommy.model.User;
 import com.tommy.service.MailService;
+import com.tommy.service.OnlineUserService;
 import com.tommy.service.UserService;
 
 public class LoginSuccessHandler extends
 		SavedRequestAwareAuthenticationSuccessHandler {
     @Autowired
-	MailService mailService;
+    private MailService mailService;
     @Autowired
-    UserService service;
+    private UserService service;
+    @Autowired
+    private OnlineUserService onlineUserService;
     
     private User userFind=null;
 
 	@Override
      public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                     Authentication authentication) throws ServletException, IOException {
-         request.getSession().setMaxInactiveInterval(60 * 60); //one hour
-         System.out.println("Session set up for 60min");
+        
 		 System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		  UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	        System.out.println("username: " + userDetails.getUsername());
@@ -55,7 +60,11 @@ public class LoginSuccessHandler extends
 	     request.getSession().setAttribute("userId", userFind.getId());
 	     request.getSession().setAttribute("userName", userFind.getUsername());
 	     request.getSession().setAttribute("userEmail", userFind.getEmail());
-
+	     //將 onlineUser存到table中
+	     OnlineUser onlineUser=new OnlineUser();
+	     onlineUser.setUserId(userFind.getId());
+	     onlineUser.setSessionId(request.getSession().getId());
+	     onlineUserService.save(onlineUser);
          super.onAuthenticationSuccess(request, response, authentication);
       }
 

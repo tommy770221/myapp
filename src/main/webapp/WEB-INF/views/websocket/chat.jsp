@@ -59,7 +59,7 @@
         e.preventDefault();
         var code = $('.new .code').val();
         var jsonstr = JSON.stringify({'message': code});
-        stompClient.send("/app/fleet/4028818350787517015078759a220000/driver/4028818350a47b640150a47d0e630000", {}, jsonstr);
+        stompClient.send("/app/fleet/4028818350787517015078759a220000/driver/${userId}", {}, jsonstr);
         return false;
       });
     });

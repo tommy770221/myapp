@@ -21,6 +21,11 @@
 	<!-- Role DAO +Service -->
 	<bean id="roleDAO" class="com.tommy.dao.impl.RoleDAOImpl" />
 	<bean id="roleService" class="com.tommy.service.impl.RoleServiceImpl" />
+	
+	<!-- OnlineUser DAO +Service -->
+	<bean id="onlineUserDAO" class="com.tommy.dao.impl.OnlineUserDAOImpl" />
+	<bean id="onlineUserService" class="com.tommy.service.impl.OnlineUserServiceImpl" />
+	
 
 
 </beans>
