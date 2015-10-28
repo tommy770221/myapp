@@ -1,3 +1,1 @@
-curl -X POST http://localhost:8080/myapp/oauth/token -d grant_typ
-e=password -d username=tommy770221test@gmail.com -d password=test -d client_id=c
-lient -d client_secret=secret
+curl -X POST http://localhost:8080/myapp/oauth/token -d grant_type=password -d username=tommy770221test@gmail.com -d password=test -d client_id=client -d client_secret=secret

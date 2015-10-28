@@ -37,7 +37,8 @@ public class OnlineUserDAOImpl implements OnlineUserDAO {
 
 
 	public void removeAll() {
-		manager.createNativeQuery("truncate table online_users;");
+		System.out.println("remove all online status");
+		manager.createNativeQuery("truncate table `online_users`;").executeUpdate();
 	}
 
 	

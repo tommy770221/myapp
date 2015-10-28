@@ -16,7 +16,7 @@ public class TruncatOnlineUserListener implements ServletContextListener {
 		            WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
 
 		 OnlineUserService onlineUserService=(OnlineUserService) context.getBean("onlineUserService");
-		  onlineUserService.removeAll();
+		 onlineUserService.removeAll();
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class TruncatOnlineUserListener implements ServletContextListener {
 		            WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
 
 		 OnlineUserService onlineUserService=(OnlineUserService) context.getBean("onlineUserService");
-		  onlineUserService.removeAll();
+		 onlineUserService.removeAll();
 	}
 
 }
