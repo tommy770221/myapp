@@ -45,7 +45,7 @@
                 </div><!-- /.tab-content -->
               </div><!-- nav-tabs-custom -->
             </div>
-<div class="col-md-6">
+       <div class="col-md-6">
               <!-- Custom Tabs (Pulled to the right) -->
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs " >
@@ -228,6 +228,9 @@
 
 <!--       <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="startIntro();">開始導覽</a> -->
 	</section>
+
+</div>
+<!-- /.content-wrapper -->
 	<!-- /.content -->
 	<script type="text/javascript">
       function startIntro(){
@@ -262,5 +265,3 @@
           intro.start();
       }
     </script>
-</div>
-<!-- /.content-wrapper -->

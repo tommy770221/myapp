@@ -1,4 +1,4 @@
-package com.tommy.myapp.restcontroller;
+package com.tommy.myapp.apicontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

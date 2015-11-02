@@ -143,6 +143,9 @@
               <a href="${pageContext.request.contextPath}/j_spring_security_logout" class="btn btn-success" style="background-color: #0089A6;">Sign out</a>
            </div>
         </li>
+        <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+        </li>
       </ul>
     </div>
   </nav>

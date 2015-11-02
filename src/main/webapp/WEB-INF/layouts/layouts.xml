@@ -22,6 +22,7 @@
   <definition name="adminlte"      template="/WEB-INF/layouts/adminLTELayout/adminLTELayout.jsp">
 		<put-attribute name="header"  value="/WEB-INF/layouts/adminLTELayout/header.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/layouts/adminLTELayout/sidebar.jsp" />
+	    <put-attribute name="controllsidebar" value="/WEB-INF/layouts/adminLTELayout/controllsidebar.jsp" />
 		<put-attribute name="footer"  value="/WEB-INF/layouts/adminLTELayout/footer.jsp" />
 	</definition>
 	<definition name="selfAside"   template="/WEB-INF/layouts/selfAsideLayout/adminLTELayout.jsp">

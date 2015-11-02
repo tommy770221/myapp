@@ -55,6 +55,7 @@
   <div class="wrapper">
         <tiles:insertAttribute name="header" ignore="true" />
         <tiles:insertAttribute name="sidebar" ignore="true" />
+        <tiles:insertAttribute name="controllsidebar" ignore="true" />
         <tiles:insertAttribute name="body" ignore="true" />
         <tiles:insertAttribute name="footer" ignore="true" />
   </div>
@@ -108,10 +109,7 @@
     <!-- AdminLTE App -->
     <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/app.min.js" type="text/javascript"></script>    
     
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/pages/dashboard.js" type="text/javascript"></script>    
-    
-    <!-- AdminLTE for demo purposes -->
-    <script src="${pageContext.request.contextPath}/AdminLTE/dist/js/demo.js" type="text/javascript"></script>
+        
+   
 </body>
 </html>

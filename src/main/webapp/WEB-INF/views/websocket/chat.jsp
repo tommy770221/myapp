@@ -7,12 +7,12 @@
   <h1>Stock Ticker</h1>
 
   <table>
-    <thead><tr><th>Message</th><th>Time</th></tr></thead>
+    <thead><tr><th>Message</th><th>Message</th><th>Time</th></tr></thead>
     <tbody id="price"></tbody>
   </table>
 
   <p class="new">
-     Code: <input type="text" class="code"/>
+    message: <input type="text" class="message"/>
     Price: <input type="text" class="price"/>
     <button class="send">Add</button>
     <button class="remove-all">Remove All</button>
@@ -29,7 +29,7 @@
     // when subscribing to price topic
     function renderPrice(frame) {
       var messages = JSON.parse(frame.body);
-      $('#price').empty();
+    //  $('#price').empty();
       for(var i in messages) {
         var message = messages[i];
         $('#price').append(
@@ -44,7 +44,7 @@
     
     // Callback function to be called when stomp client is connected to server
     var connectCallback = function() {
-      stompClient.subscribe('/topic/fleet/${userId}', renderPrice);
+      stompClient.subscribe('/topic/fleet/${userId}/${userId}', renderPrice);
     }; 
     // Callback function to be called when stomp client could not connect to server
     var errorCallback = function(error) {
@@ -57,9 +57,9 @@
     $(document).ready(function() {
       $('.send').click(function(e){
         e.preventDefault();
-        var code = $('.new .code').val();
-        var jsonstr = JSON.stringify({'message': code});
-        stompClient.send("/app/fleet/4028818350787517015078759a220000/driver/${userId}", {}, jsonstr);
+        var message = $('.new .message').val();
+        var jsonstr = JSON.stringify({'message': message});
+        stompClient.send("/app/fleet/${userId}/driver/${userId}", {}, jsonstr);
         return false;
       });
     });

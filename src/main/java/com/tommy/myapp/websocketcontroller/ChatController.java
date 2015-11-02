@@ -30,7 +30,8 @@ public class ChatController {
 	public void simple(@DestinationVariable("fleetId") String fleetId, @DestinationVariable("driverId") String driverId,Message message) {
 		List<Message> messages=new ArrayList<Message>();
 		messages.add(message);
-		simpMessagingTemplate.convertAndSend("/topic/fleet/" + fleetId, messages);
+		System.out.println("send message");
+		simpMessagingTemplate.convertAndSend("/topic/fleet/"+fleetId+"/"+driverId, messages);
 	}
 	
 	 /**
@@ -42,6 +43,7 @@ public class ChatController {
 		  HttpSession session=httpServletRequest.getSession();
 		  String userId=(String) session.getAttribute("userId");
 		  model.addAttribute("userId",userId);
+		  
 	    return "chat";
 	  }
 }
