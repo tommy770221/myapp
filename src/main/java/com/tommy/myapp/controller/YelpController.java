@@ -63,9 +63,11 @@ public class YelpController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (Bussiness bussiness : region.getBusinesses()) {
-			System.out.println(bussiness.getId());
-			System.out.println(bussiness.getUrl());
+		if(region!=null & region.getBusinesses()!=null){
+			for (Bussiness bussiness : region.getBusinesses()) {
+				System.out.println(bussiness.getId());
+				System.out.println(bussiness.getUrl());
+			}
 		}
 		model.addAttribute("region", region);
 	
