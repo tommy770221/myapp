@@ -136,3 +136,4 @@ local.properties
 .scala_dependencies
 .worksheet
 
+src/main/webapp/WEB-INF/classes/
