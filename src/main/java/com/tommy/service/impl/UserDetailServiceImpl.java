@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.tommy.dao.UserDAO;
-import com.tommy.model.Role;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.Role;
+import com.tommy.model.hibernate.User;
 
 public class UserDetailServiceImpl implements UserDetailsService {
 

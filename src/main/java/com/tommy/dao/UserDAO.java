@@ -2,7 +2,7 @@ package com.tommy.dao;
 
 import java.util.List;
 
-import com.tommy.model.User;
+import com.tommy.model.hibernate.User;
 
 public interface UserDAO {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tommy.dao.RoleDAO;
-import com.tommy.model.Role;
+import com.tommy.model.hibernate.Role;
 import com.tommy.service.RoleService;
 
 public class RoleServiceImpl implements RoleService {

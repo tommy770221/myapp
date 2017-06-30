@@ -5,18 +5,20 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tommy.dao.OnlineUserDAO;
-import com.tommy.model.OnlineUser;
+import com.tommy.model.hibernate.OnlineUser;
 
 
 @Repository
-@Transactional
+@Transactional(value = "transactionManagerTwo")
 public class OnlineUserDAOImpl implements OnlineUserDAO {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "persistenceUnitTwo")
+	@Qualifier(value = "entityManagerFactoryTwo")
 	private EntityManager manager;
 	
 	public List<OnlineUser> findAll() {

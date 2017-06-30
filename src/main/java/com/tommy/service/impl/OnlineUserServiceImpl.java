@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tommy.dao.OnlineUserDAO;
-import com.tommy.model.OnlineUser;
+import com.tommy.model.hibernate.OnlineUser;
 import com.tommy.service.OnlineUserService;
 
 public class OnlineUserServiceImpl implements OnlineUserService {

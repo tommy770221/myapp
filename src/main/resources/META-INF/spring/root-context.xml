@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	   xsi:schemaLocation="http://www.springframework.org/schema/aop
 	                    http://www.springframework.org/schema/aop/spring-aop.xsd         
 	                    http://www.springframework.org/schema/beans 
 	                    http://www.springframework.org/schema/beans/spring-beans.xsd         
@@ -14,13 +15,16 @@
 	                    http://www.springframework.org/schema/jee 
 	                    http://www.springframework.org/schema/jee/spring-jee.xsd         
 	                    http://www.springframework.org/schema/tx 
-	                    http://www.springframework.org/schema/tx/spring-tx.xsd">
+	                    http://www.springframework.org/schema/tx/spring-tx.xsd
+	                    http://www.springframework.org/schema/data/jpa
+	                    http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- This will automatically locate any and all property files you have 
 		within your classpath, provided they fall under the META-INF/spring directory. 
 		The located property files are parsed and their values can then be used within 
 		application context files in the form of ${propertyKey}. -->
+
 	<context:property-placeholder location="classpath*:META-INF/spring/*.properties" />
 	
 	<!-- Turn on AspectJ @Configurable support. As a result, any time you instantiate 
@@ -54,6 +58,8 @@
 		<context:exclude-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />
 	</context:component-scan>
+	<context:annotation-config />
+	<jpa:repositories base-package="com.tommy.service.jpa" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
 	<bean class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" id="dataSource">
 		<property name="driverClassName" value="${database.driverClassName}" />
@@ -64,15 +70,17 @@
 		<property name="numTestsPerEvictionRun" value="3" />
 		<property name="minEvictableIdleTimeMillis" value="1800000" />
 	</bean>
-   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-      <property name="entityManagerFactory" ref="entityManagerFactoryBean" />
+   <bean id="transactionManager"  class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="entityManagerFactory" />
    </bean>
-	<tx:annotation-driven/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactoryBean">
+		name="entityManagerFactory" id="entityManagerFactory" primary="true">
+		  <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
+		  <property name="persistenceUnitName" value="persistenceUnitOne" />
 		  <property name="dataSource" ref="dataSource" />
-		  <property name="packagesToScan" value="com.tommy.model" />
+		  <property name="packagesToScan" value="com.tommy.model.springjpa" />
 	      <!-- JpaVendorAdapter implementation for Hibernate EntityManager.
 	           Exposes Hibernate's persistence provider and EntityManager extension interface -->
 	      <property name="jpaVendorAdapter">
@@ -114,9 +122,11 @@
 	</bean>
 	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder">
     </bean>
-	
 
-    <import resource="applicationContext-dao.xml"/>	   
+
+
+	<import resource="applicationContext-mongo.xml"/>
+	<import resource="applicationContext-dao.xml"/>
     <import resource="application-security.xml"/>
     <import resource="spring-oauth2.xml"/>
 </beans>

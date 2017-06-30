@@ -1,4 +1,4 @@
-package com.tommy.model;
+package com.tommy.model.hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

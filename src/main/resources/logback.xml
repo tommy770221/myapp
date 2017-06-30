@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+<!--    <encoder> -->
+<!--       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern> -->
+<!--     </encoder> -->
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+  
+   <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>spring.log</File>
+     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <!-- 會根據 filename 決定週期  yyyy-MM-dd-HH-mm --> 
+                        <FileNamePattern>log_%d{yyyy-MM-dd}.log</FileNamePattern>
+                        <maxHistory>30</maxHistory>
+     </rollingPolicy>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+<!-- 加上additivity="false" 才不會輸出兩次  -->   
+  <logger name="com.tommy" level="debug" additivity="false">
+      	<appender-ref ref="STDOUT" />
+<!--   		<appender-ref ref="dailyRollingFileAppender"/> -->
+  </logger>
+    <logger name="org.springframework" level="error" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <!--   		<appender-ref ref="dailyRollingFileAppender"/> -->
+    </logger>
+    <logger name="org.springframework.data" level="error" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <!--   		<appender-ref ref="dailyRollingFileAppender"/> -->
+    </logger>
+<!--  <logger name="org.springframework.orm" level="debug" additivity="false"> -->
+<!--   <appender-ref ref="dailyRollingFileAppender"/> -->
+<!--  </logger> -->
+  <!-- logger name="org.pac4j" level="DEBUG" /-->
+<!--   <logger name="org.springframework.security" level="DEBUG" additivity="false"> -->
+<!--     <appender-ref ref="dailyRollingFileAppender"/> -->
+<!--     <appender-ref ref="STDOUT"/> -->
+<!--   </logger> -->
+<!--   <logger name="org.springframework.security.oauth2" level="DEBUG" additivity="false"> -->
+<!--     <appender-ref ref="dailyRollingFileAppender"/> -->
+<!--     <appender-ref ref="STDOUT"/> -->
+<!--   </logger> -->
+ 
+  
+<!--     <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender"> -->
+<!--             <smtpHost>smtp.gmail.com</smtpHost> -->
+<!--             <smtpPort>587</smtpPort> -->
+<!--             <localhost>127.0.0.1</localhost> -->
+<!--             <STARTTLS>true</STARTTLS> -->
+<!--             <username>tommy770221test@gmail.com</username> -->
+<!--             <password></password> -->
+<!--             <to>tommy@jrsys.com.tw</to> -->
+<!--             <from>tommy770221test@gmail.com</from> -->
+<!--             <subject>TESTING: %logger{20} - %m</subject> -->
+<!--             <layout class="ch.qos.logback.classic.PatternLayout"> -->
+<!--                 <pattern>%date %-5level %logger{35} - %message%n</pattern> -->
+<!--             </layout> -->
+<!--    </appender> -->
+
+
+<!--以下是root level 一次只能有一個root level="ERROR" "WARN" "debug" -->
+  <root level="ERROR">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="dailyRollingFileAppender"/>
+    <!--      <appender-ref ref="EMAIL" /> -->
+  </root>    
+        
+
+</configuration>

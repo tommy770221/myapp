@@ -7,7 +7,7 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>classpath*:META-INF/spring/root-context.xml</param-value>
 	</context-param>
 	<!-- Enable escaping of form submission contents -->
 	<context-param>
@@ -39,8 +39,20 @@
     
     
     <filter>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <filter-name>Spring OpenEntityManagerInViewFilter1</filter-name>
         <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>entityManagerFactory</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Spring OpenEntityManagerInViewFilter2</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>entityManagerFactoryTwo</param-value>
+        </init-param>
     </filter>
     
 <!--     <filter> -->
@@ -62,7 +74,11 @@
     	<url-pattern>/*</url-pattern>
   	</filter-mapping>
     <filter-mapping>
-        <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
+        <filter-name>Spring OpenEntityManagerInViewFilter1</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Spring OpenEntityManagerInViewFilter2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 <!--     <filter-mapping> -->
@@ -75,11 +91,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<listener>
 		<listener-class>com.tommy.listener.TruncatOnlineUserListener</listener-class>
 	</listener>
-	
+
 	<listener>
 		<listener-class>com.tommy.listener.OnlineUserListener</listener-class>
 	</listener>

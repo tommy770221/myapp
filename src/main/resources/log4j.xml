@@ -31,7 +31,9 @@
 	<logger name="org.springframework.web">
 		<level value="error" />
 	</logger>
-
+	<logger name="org.springframework.orm.jpa">
+		<level value="debug" />
+	</logger>
 	<!-- Root Logger -->
 	<root>
 		<priority value="warn" />

@@ -13,13 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tommy.model.Role;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.Role;
+import com.tommy.model.hibernate.User;
 import com.tommy.service.MailService;
 import com.tommy.service.RoleService;
 import com.tommy.service.UserService;

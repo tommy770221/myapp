@@ -1,19 +1,13 @@
 package com.tommy.handler.login;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.SharedSessionContract;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,9 +18,8 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 
 
 
-import com.tommy.model.OnlineUser;
-import com.tommy.model.Role;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.OnlineUser;
+import com.tommy.model.hibernate.User;
 import com.tommy.service.MailService;
 import com.tommy.service.OnlineUserService;
 import com.tommy.service.UserService;

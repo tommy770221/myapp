@@ -2,7 +2,7 @@ package com.tommy.dao;
 
 import java.util.List;
 
-import com.tommy.model.Role;
+import com.tommy.model.hibernate.Role;
 
 
 

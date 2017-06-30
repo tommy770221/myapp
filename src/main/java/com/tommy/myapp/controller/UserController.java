@@ -1,8 +1,5 @@
 package com.tommy.myapp.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -13,8 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tommy.model.Role;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.User;
 import com.tommy.service.UserService;
 
 @Controller

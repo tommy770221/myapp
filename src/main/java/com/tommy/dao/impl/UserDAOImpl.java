@@ -1,23 +1,23 @@
 package com.tommy.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tommy.dao.UserDAO;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.User;
 
 @Repository
-@Transactional
+@Transactional(value = "transactionManagerTwo")
 public class UserDAOImpl implements UserDAO {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "persistenceUnitTwo")
+	@Qualifier(value = "entityManagerFactoryTwo")
 	private EntityManager manager;
 
 
@@ -40,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
-	@Transactional
+	@Transactional(value = "transactionManagerTwo")
 	public void saveUser(User user) {
 		 manager.persist(user);
 	}

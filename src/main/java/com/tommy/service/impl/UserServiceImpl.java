@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tommy.dao.UserDAO;
-import com.tommy.model.User;
+import com.tommy.model.hibernate.User;
 import com.tommy.service.UserService;
 
 public class UserServiceImpl implements UserService {
