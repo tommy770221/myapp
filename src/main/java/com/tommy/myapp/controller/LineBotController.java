@@ -216,9 +216,12 @@ public class LineBotController {
         try {
             // CallbackRequest callbackRequest = lineBotCallbackRequestParser.handle(httpServletRequest);
             byte[] json = ByteStreams.toByteArray(httpServletRequest.getInputStream());
+            System.out.println(new String(json));
             CallbackRequest callbackRequest = (CallbackRequest) objectMapper.readValue(json, CallbackRequest.class);
+
             List<Event> events= callbackRequest.getEvents();
             for(Event event:events){
+
                 if(event instanceof MessageEvent) {
                     MessageEvent env=(MessageEvent) event;
                     PersonRecord personRecord=null;
@@ -234,6 +237,7 @@ public class LineBotController {
                         personRecord=new PersonRecord();
                         personRecord.setLineId(userProfileResponse.getUserId());
                         personRecord.setUserName(hex2Str(userProfileResponse.getDisplayName()));
+                        personRecord.setCreateDate(new Date());
                         personRecordService.save(personRecord);
                         e.printStackTrace();
                         return"";
@@ -267,6 +271,7 @@ public class LineBotController {
                                             .replyMessage(replyMessage)
                                             .execute();
                         }
+
                         JiebaSegmenter segmenter = new JiebaSegmenter();
                         System.out.println(segmenter.process(ask.getText(), JiebaSegmenter.SegMode.SEARCH).toString());
                         List<SegToken> segTokenList = segmenter.process(ask.getText(), JiebaSegmenter.SegMode.SEARCH);
@@ -313,6 +318,7 @@ public class LineBotController {
                                                 .execute();
                         personRecord.setSymptom(ask.getText());
                         personRecord.setCurrentStatus("disease");
+                        personRecord.setUpdateDate(new Date());
                         personRecordService.save(personRecord);
                         LineHospitalMessage lineHospitalMessage=new LineHospitalMessage();
                         lineHospitalMessage.setAskMessage(ask.getText());
@@ -320,11 +326,13 @@ public class LineBotController {
                         lineHospitalMessage.setUserLineId(event.getSource().getUserId());
                         lineHospitalMessage.setCreateDate(new Date());
                         lineHospitalMessageMongoService.save(lineHospitalMessage);
+
                     }else if(env.getMessage() instanceof LocationMessageContent){
                         LocationMessageContent locationMessageContent=(LocationMessageContent) env.getMessage();
                         personRecord.setLatitude(locationMessageContent.getLatitude());
                         personRecord.setLongtitude(locationMessageContent.getLongitude());
                         personRecord.setCurrentStatus("location");
+                        personRecord.setUpdateDate(new Date());
                         personRecordService.save(personRecord);
 
                         Point DUS = new Point( personRecord.getLongtitude(), personRecord.getLatitude() );
@@ -441,11 +449,13 @@ public class LineBotController {
                     personRecord=personRecordService.searchByLineId(event.getSource().getUserId());
                     String postback=postbackEvent.getPostbackContent().getData();
                     personRecord.setCurrentStatus("registered");
+                    personRecord.setUpdateDate(new Date());
                     personRecordService.save(personRecord);
                     System.out.println("postback data : "+postback);
                     HospitalRegisteredRecord hospitalRegisteredRecord=new HospitalRegisteredRecord();
                     hospitalRegisteredRecord.setDidRegist("false");
                     hospitalRegisteredRecord.setSymptom(personRecord.getSymptom());
+                    hospitalRegisteredRecord.setUpdateDate(new Date());
                     hospitalRegisteredRecordService.save(hospitalRegisteredRecord);
 
                     TextMessage textMessage = new TextMessage("恭喜掛號成功  ε٩(๑> ₃ <)۶з");

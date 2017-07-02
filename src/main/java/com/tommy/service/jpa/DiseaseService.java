@@ -16,6 +16,6 @@ import java.util.List;
 @Repository
 public interface DiseaseService extends JpaRepository<Disease,Integer> {
 
-    @Query("SELECT o FROM Disease o where o.symptom like :memberDisease ")
+    @Query("SELECT o FROM Disease o where o.symptom like %:memberDisease% ")
     List<Disease> searchAllSymtom(String memberDisease);
 }

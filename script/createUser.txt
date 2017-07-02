@@ -1,0 +1,5 @@
+db.createUser({user: "root",pwd: "root", roles: [{"role": "dbAdmin","db": "admin"},{"role": "dbAdmin","db": "chatterbot-database"}] })
+
+db.createUser({user: "root",pwd: "root", roles: [{"role": "dbAdmin","db": "admin"},{"role": "dbAdmin","db": "chatterbot-database"},{"role": "userAdminAnyDatabase","db": "admin"},{"role": "readWriteAnyDatabase","db": "admin"}] })
+
+db.updateUser("root",{pwd: "root", roles: [{"role": "dbAdmin","db": "admin"},{"role": "dbAdmin","db": "chatterbot-database"},{"role": "userAdminAnyDatabase","db": "admin"},{"role": "readWriteAnyDatabase","db": "admin"}]})

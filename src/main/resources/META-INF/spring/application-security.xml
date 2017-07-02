@@ -83,7 +83,7 @@
 		    <password-encoder hash='md5'>
                 <salt-source user-property="username"/>
             </password-encoder> 
-			<jdbc-user-service data-source-ref="dataSource"
+			<jdbc-user-service data-source-ref="dataSourceTwo"
 				users-by-username-query="select email as username,PASSWORD as password, enabled  from user where email=?"
 				authorities-by-username-query="select u.email as username, r.name as role from user u left join user_roles ur on u.id=ur.userId left join role r on ur.roleId=r.roleId where u.email =?  " />
 		</authentication-provider>

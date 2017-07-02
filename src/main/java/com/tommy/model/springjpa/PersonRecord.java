@@ -1,6 +1,7 @@
 package com.tommy.model.springjpa;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,18 +21,29 @@ public class PersonRecord {
     @Column(name = "id")
     private Integer id;
 
-
+    @Column
     private String lineId;
 
+    @Column
     private String currentStatus;
 
+    @Column
     private Double longtitude;
 
+    @Column
     private Double latitude;
 
+    @Column
     private String userName;
 
+    @Column
     private String symptom;
+
+    @Column(name="createDate")
+    private Date createDate;
+
+    @Column(name="updateDate")
+    private Date updateDate;
 
     public Integer getId() {
         return id;
@@ -89,6 +101,19 @@ public class PersonRecord {
         this.symptom = symptom;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
 
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 }

@@ -2,9 +2,10 @@ package com.tommy.model.springjpa;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table
+@Table(name="disease")
 public class Disease {
 
     private transient int orderDis = 0;
@@ -42,6 +43,12 @@ public class Disease {
     @Column(name = "symptom")
     private String symptom;
 
+    @Column(name="createDate")
+    private Date createDate;
+
+    @Column(name="updateDate")
+    private Date updateDate;
+
     public String getDocCategory() {
         return docCategory;
     }
@@ -72,5 +79,21 @@ public class Disease {
 
     public void setSymptom(String symptom) {
         this.symptom = symptom;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

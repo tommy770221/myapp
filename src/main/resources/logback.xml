@@ -33,7 +33,7 @@
         <appender-ref ref="STDOUT" />
         <!--   		<appender-ref ref="dailyRollingFileAppender"/> -->
     </logger>
-    <logger name="org.springframework.data" level="error" additivity="false">
+    <logger name="org.springframework.data.mongodb" level="error" additivity="false">
         <appender-ref ref="STDOUT" />
         <!--   		<appender-ref ref="dailyRollingFileAppender"/> -->
     </logger>
