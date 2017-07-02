@@ -23,6 +23,7 @@ import com.linecorp.bot.model.message.template.CarouselColumn;
 import com.linecorp.bot.model.message.template.CarouselTemplate;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
+import com.tommy.SpringConfig;
 import com.tommy.model.springjpa.Disease;
 import com.tommy.model.springjpa.HospitalRegisteredRecord;
 import com.tommy.model.springjpa.PersonRecord;
@@ -87,12 +88,13 @@ public class LineBotController {
 
     @Autowired
     HospitalRegisteredRecordService hospitalRegisteredRecordService;
-
+    @Autowired
+    SpringConfig springConfig;
 
     @RequestMapping(value = "block",method ={RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
     @ResponseBody
     public String blockTemplate(HttpServletRequest httpServletRequest) throws IOException {
-        String channelToken="hhNohi5sJV4/yj1tvTCvBPrxSop6WKo+GsxOCbE7dI8tYc1+8xbUIFm7raVZ7CrBpkt2N29F3QngT7HyEC/OOi1Tw+n281xb7YOwXku1c1SnK4FAbkpa0J+Vzy5Xz3/6+uCw9JMjibkIjY3nilOg6wdB04t89/1O/w1cDnyilFU=";
+        String channelToken=springConfig.lineChannelToken;
        //LineBotCallbackRequestParser lineBotCallbackRequestParser=new LineBotCallbackRequestParser(new LineSignatureValidator(channelToken.getBytes()));// StringWriter writer = new StringWriter();
        // IOUtils.copy(httpServletRequest.getInputStream(), writer, "utf-8");
        String theString ="";
@@ -207,7 +209,7 @@ public class LineBotController {
     @RequestMapping(value = "hospital",method ={RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
     @ResponseBody
     public String hospital(HttpServletRequest httpServletRequest) throws IOException {
-        String channelToken="CoDTDBUonrzgtPtnIPT9gIcrFcZHfzOpqz/B5+BXbiVgCfuNN1quroMByxu0Igln5z7PR5DeI7tGEtoDxNGeRF/zl//mXmt0BPE7yI3K86DSqqASCoTl0behGFCx1QAX/EJUK3iQUtRo3aqeFBSfFQdB04t89/1O/w1cDnyilFU=";
+        String channelToken=springConfig.lineChannelToken;
         //LineBotCallbackRequestParser lineBotCallbackRequestParser=new LineBotCallbackRequestParser(new LineSignatureValidator(channelToken.getBytes()));// StringWriter writer = new StringWriter();
         // IOUtils.copy(httpServletRequest.getInputStream(), writer, "utf-8");
         String theString ="";

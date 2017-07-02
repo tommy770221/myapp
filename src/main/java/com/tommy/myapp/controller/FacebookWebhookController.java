@@ -11,6 +11,7 @@ import com.restfb.types.webhook.WebhookEntry;
 import com.restfb.types.webhook.WebhookObject;
 import com.restfb.types.webhook.messaging.MessagingAttachment;
 import com.restfb.types.webhook.messaging.MessagingItem;
+import com.tommy.SpringConfig;
 import com.tommy.model.springjpa.Disease;
 import com.tommy.mongo.FBHospitalMessage;
 import com.tommy.service.jpa.DiseaseService;
@@ -42,6 +43,9 @@ public class FacebookWebhookController {
 
     @Autowired
     DiseaseService diseaseService;
+
+    @Autowired
+    SpringConfig springConfig;
 
     @RequestMapping(value = "/webhook",method = RequestMethod.GET, produces = "text/plain")
     @ResponseBody
@@ -86,7 +90,7 @@ public class FacebookWebhookController {
                     if(messageItem.getMessage()!=null){
                         System.out.println("messageItem.getText() : "+messageItem.getMessage().getText());
                         String sentence=messageItem.getMessage().getText();
-                        if(messageItem.getRecipient().getId().equals("218654758629408")) {
+                        if(messageItem.getRecipient().getId().equals(springConfig.fbRecipientId)) {
                             JiebaSegmenter segmenter = new JiebaSegmenter();
                             System.out.println(segmenter.process(sentence, JiebaSegmenter.SegMode.SEARCH).toString());
                             List<SegToken> segTokenList = segmenter.process(sentence, JiebaSegmenter.SegMode.SEARCH);
@@ -126,7 +130,7 @@ public class FacebookWebhookController {
                             }
                             Message simpleTextMessage = new Message(responseCat);
 
-                            String pageAccessToken = "EAAFPgrP0FZC4BAAcZCw66JNdgnZC5sBp8DVBZCrHggdS3hLONKsPLWb6tfZCv7PHEEXZAPjcWZCp0v2QyGC3oqMs7atPC1H5bAvSEnopTOpY3fe4glJIlXa8WwaYyXxJtRXQ2pc7qX2ZAWelsR7iIbsvh2Y8wiIgec6JUOxPOZBvoKgZDZD";
+                            String pageAccessToken =springConfig.fbPageToken;
 
                             // create a version 2.8 client
                             FacebookClient pageClient = new DefaultFacebookClient(pageAccessToken, Version.VERSION_2_8);
