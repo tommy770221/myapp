@@ -367,20 +367,34 @@ public class LineBotController {
                         });
                         Criteria criteria = new Criteria();
                         List<Criteria> criteriaList=new ArrayList<Criteria>();
-                        Query query = new Query(Criteria.where("name").regex("(醫院)|(診所)"));
+                       ;
+
                         String str="";
+                        String strTemp="";
                         int i=0;
                         for(Disease disease:diseaseSet){
                             i++;
-                            if(i<diseaseSet.size()){
-                                str=str+"("+disease.getCategory()+")|";
+                            if("一般內科".equals(disease.getCategory().trim())){
+                                strTemp="內科";
+                            }else if("小兒科".equals(disease.getCategory().trim())){
+                                strTemp="兒科";
                             }else{
-                                str=str+"("+disease.getCategory()+")";
+                                strTemp=disease.getCategory().trim();
+                            }
+
+                            if(i<diseaseSet.size()){
+
+                                str=str+"("+strTemp+")|";
+                            }else{
+                                str=str+"("+strTemp+")";
                             }
 
                             System.out.println(disease.getCategory());
 
                         }
+                        str=str+"|"+"不分科";
+                     //   criteria.and("category").regex(str);
+                        Query query = new Query( Criteria.where("name").regex("(醫院)|(診所)").and("category").regex(str).orOperator(Criteria.where("name").regex("(醫院)|(診所)").and("serviceItem").regex(str)));
                         System.out.println(query.toString());
                         NearQuery nearQuery = NearQuery.near(DUS).maxDistance(new Distance(5, Metrics.KILOMETERS));
                         nearQuery.query(query);
