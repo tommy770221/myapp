@@ -1,0 +1,3 @@
+
+粉絲頁訊息A   https://graph.facebook.com/{page-id}?fields=converstations  pageToken
+粉絲頁訊息B   https://graph.facebook.com/m_mid.$cAACcLt_3XQZjAMH89Fcz3y0PeeHo?fields=message,from,attachments,created_time pageToken
