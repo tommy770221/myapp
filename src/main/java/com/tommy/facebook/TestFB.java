@@ -40,9 +40,7 @@ public class TestFB {
             }
         }
         Date oneWeekAgo = new Date(currentTimeMillis() - 1000L * 60L * 60L * 24L * 7L);
-        Connection<Message> messageConnection = facebookClient.fetchConnection("1582257328764467/feed", Message.class,
-                Parameter.with("limit", 500), Parameter.with("until", "yesterday"),
-                Parameter.with("since", oneWeekAgo));
+        Connection<Message> messageConnection = facebookClient.fetchConnection("100558927196033/feed", Message.class);
         List<Message> messageList=messageConnection.getData();
         String nextURL=messageConnection.getNextPageUrl();
         System.out.println("getNextPageUrl : "+messageConnection.getNextPageUrl());
@@ -76,6 +74,9 @@ public class TestFB {
             }
 
         }
+
+
+
 
 
     }
