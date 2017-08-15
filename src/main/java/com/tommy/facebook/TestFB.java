@@ -37,7 +37,7 @@ public class TestFB {
             }
         }
 
-        Connection<Message> messageConnection = facebookClient.fetchConnection("1582257328764467/feed", Message.class);
+        Connection<Message> messageConnection = facebookClient.fetchConnection("711nutritionwarehouse/feed", Message.class);
         List<Message> messageList=messageConnection.getData();
         for(Message message:messageList){
             System.out.println(message.getId());
