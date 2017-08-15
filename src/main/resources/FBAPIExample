@@ -1,0 +1,6 @@
+
+粉絲頁訊息A   https://graph.facebook.com/{page-id}?fields=converstations  pageToken
+粉絲頁訊息B   https://graph.facebook.com/m_mid.$cAACcLt_3XQZjAMH89Fcz3y0PeeHo?fields=message,from,attachments,created_time pageToken
+
+直播粉絲團 https://graph.facebook.com/100558927196033_143358066249452?fields=application,timeline_visibility,video_buying_eligibility,caption,message_tags,properties,source,with_tags{link,pic_large},actions,link pageToken
+      直播 https://graph.facebook.com/1989916501147278?fields=comments
